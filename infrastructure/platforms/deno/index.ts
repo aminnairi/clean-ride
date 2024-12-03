@@ -18,7 +18,7 @@ const appointmentController = new AppointmentController(
 
 const motorcycleController = new MotorcycleController(motorcycleRepository);
 
-const handler = async (request: Request): Promise<Response> => {
+const handler = (request: Request): Promise<Response> => {
   try {
     const url = new URL(request.url);
 
@@ -42,15 +42,19 @@ const handler = async (request: Request): Promise<Response> => {
       }
     }
 
-    return new Response("Not found", {
-      status: 404,
-    });
+    return Promise.resolve(
+      new Response("Not found", {
+        status: 404,
+      }),
+    );
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
 
-    return new Response(message, {
-      status: 500,
-    });
+    return Promise.resolve(
+      new Response(message, {
+        status: 500,
+      }),
+    );
   }
 };
 

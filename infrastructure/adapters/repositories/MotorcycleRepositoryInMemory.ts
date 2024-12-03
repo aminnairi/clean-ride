@@ -4,17 +4,21 @@ import type { MotorcycleEntity } from "../../../domain/entities/MotorcycleEntity
 export class MotorcycleRepositoryInMemory implements MotorcycleRepository {
   public constructor(public readonly motorcycles: MotorcycleEntity[]) {}
 
-  public async save(motorcycle: MotorcycleEntity): Promise<void> {
+  public save(motorcycle: MotorcycleEntity): Promise<void> {
     this.motorcycles.push(motorcycle);
+
+    return Promise.resolve();
   }
 
-  public async all(): Promise<MotorcycleEntity[]> {
-    return this.motorcycles;
+  public all(): Promise<MotorcycleEntity[]> {
+    return Promise.resolve(this.motorcycles);
   }
 
-  public async findOneById(id: string): Promise<MotorcycleEntity | null> {
-    return this.motorcycles.find((motorcycle) =>
-      motorcycle.identifier === id
-    ) ?? null;
+  public findOneById(id: string): Promise<MotorcycleEntity | null> {
+    const foundMotorcycle = this.motorcycles.find((motorcycle) => {
+      return motorcycle.identifier === id;
+    });
+
+    return Promise.resolve(foundMotorcycle ?? null);
   }
 }

@@ -13,7 +13,7 @@ const requestSchema = z.object({
 export class MotorcycleController {
   public constructor(private readonly motorcycleRepository: MotorcycleRepository) {}
 
-  public async listMotorcycles(request: Request): Promise<Response> {
+  public async listMotorcycles(_: Request): Promise<Response> {
     const listMotorcyclesUsecase = new ListMotorcyclesUsecase(this.motorcycleRepository);
     const motorcycles = await listMotorcyclesUsecase.execute();
 

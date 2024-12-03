@@ -4,11 +4,13 @@ import type { AppointmentEntity } from "../../../domain/entities/AppointmentEnti
 export class AppointmentRepositoryInMemory implements AppointmentRepository {
   public constructor(private readonly appointments: AppointmentEntity[]) {}
 
-  public async save(appointment: AppointmentEntity): Promise<void> {
+  public save(appointment: AppointmentEntity): Promise<void> {
     this.appointments.push(appointment);
+
+    return Promise.resolve();
   }
 
-  public async all(): Promise<AppointmentEntity[]> {
-    return this.appointments;
+  public all(): Promise<AppointmentEntity[]> {
+    return Promise.resolve(this.appointments);
   }
 }
