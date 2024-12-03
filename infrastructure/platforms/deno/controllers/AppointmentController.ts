@@ -2,13 +2,8 @@ import type { AppointmentRepository } from "../../../../application/repositories
 import type { MotorcycleRepository } from "../../../../application/repositories/MotorcycleRepository.ts";
 import { CreateAppointmentUsecase } from "../../../../application/usecases/CreateAppointmentUsecase.ts";
 import { ListAppointmentsUsecase } from "../../../../application/usecases/ListAppointmentsUsecase.ts";
-import { z } from "npm:zod";
 import { exhaustive } from "npm:exhaustive";
-
-const requestSchema = z.object({
-  date: z.date({ coerce: true }),
-  motorcycleId: z.string().uuid(),
-});
+import { createAppointmentRequestSchema } from "../schemas/createAppointmentRequestSchema.ts";
 
 export class AppointmentController {
   public constructor(
@@ -39,7 +34,7 @@ export class AppointmentController {
 
     const body = await request.json();
 
-    const validation = requestSchema.safeParse(body);
+    const validation = createAppointmentRequestSchema.safeParse(body);
 
     if (!validation.success) {
       return new Response("Malformed request", {
