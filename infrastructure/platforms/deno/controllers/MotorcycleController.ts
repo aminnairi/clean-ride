@@ -1,14 +1,8 @@
 import type { MotorcycleRepository } from "../../../../application/repositories/MotorcycleRepository.ts";
 import { ListMotorcyclesUsecase } from "../../../../application/usecases/ListMotorcyclesUsecase.ts";
 import { CreateMotorcycleUsecase } from "../../../../application/usecases/CreateMotorcycleUsecase.ts";
-import { z } from "npm:zod";
 import { exhaustive } from "npm:exhaustive";
-
-const requestSchema = z.object({
-  brand: z.string(),
-  model: z.string(),
-  year: z.number(),
-});
+import { createMotorcycleRequestSchema } from "../schemas/createMotorcycleRequestSchema.ts";
 
 export class MotorcycleController {
   public constructor(private readonly motorcycleRepository: MotorcycleRepository) {}
@@ -27,7 +21,7 @@ export class MotorcycleController {
   public async createMotorcycle(request: Request): Promise<Response> {
     const createMotorcycleUsecase = new CreateMotorcycleUsecase(this.motorcycleRepository);
     const body = await request.json();
-    const validation = requestSchema.safeParse(body);
+    const validation = createMotorcycleRequestSchema.safeParse(body);
 
     if (!validation.success) {
       return new Response("Malformed request", {
