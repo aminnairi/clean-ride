@@ -33,3 +33,9 @@ deno test
 ```bash
 deno test --coverage && deno coverage
 ```
+
+## Lint
+
+```bash
+deno lint
+```
