@@ -1,0 +1,27 @@
+{
+  "version": "4",
+  "specifiers": {
+    "npm:exhaustive@*": "1.1.2",
+    "npm:exhaustive@^1.1.2": "1.1.2",
+    "npm:zod@*": "3.23.8",
+    "npm:zod@^3.23.8": "3.23.8"
+  },
+  "npm": {
+    "exhaustive@1.1.2": {
+      "integrity": "sha512-CfS+tz8UUWcqfCgpJxufOjQPu+NvEhGauneknfISgaZpyXJIGiWz02G4mO25mwhgf/N0USledCXI4vkWXt1Xmw=="
+    },
+    "zod@3.23.8": {
+      "integrity": "sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g=="
+    }
+  },
+  "workspace": {
+    "members": {
+      "infrastructure/platforms/deno": {
+        "dependencies": [
+          "npm:exhaustive@^1.1.2",
+          "npm:zod@^3.23.8"
+        ]
+      }
+    }
+  }
+}

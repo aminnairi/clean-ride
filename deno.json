@@ -1,0 +1,11 @@
+{
+  "workspace": [
+    "./infrastructure/platforms/deno"
+  ],
+  "compilerOptions": {
+    "strict": true
+  },
+  "fmt": {
+    "lineWidth": 10000
+  }
+}
