@@ -19,3 +19,17 @@ deno task deno:dev
 ```bash
 deno task deno:start
 ```
+
+## Tests
+
+### Run
+
+```bash
+deno test
+```
+
+### Coverage
+
+```bash
+deno test --coverage && deno coverage
+```
